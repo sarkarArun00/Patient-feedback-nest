@@ -7,6 +7,8 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { ConfigModule } from '@nestjs/config';
 import { Sequelize } from 'sequelize-typescript';
 import { User } from './entities/user.entity';
+import { PatientFeedback } from './entities/patient-feedback.entity';
+import { ClientFeedback } from './entities/client-feedback.entity';
 
 @Module({
   imports: [
@@ -17,8 +19,8 @@ import { User } from './entities/user.entity';
       username: 'root',
       password: 'Root_1001',
       database: 'patient_feedbacks',
-      models: [User],
-      synchronize: false,
+      models: [User, PatientFeedback, ClientFeedback],
+      synchronize: true,
     }),
     ConfigModule.forRoot({ isGlobal: true }),
     FeedbacksModule,

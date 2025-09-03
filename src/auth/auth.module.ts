@@ -8,6 +8,8 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { User } from '../entities/user.entity';
 import { AuthController } from './auth.controller';
 
+
+
 @Module({
   imports: [
     ConfigModule, // 👈 ensure config is imported
