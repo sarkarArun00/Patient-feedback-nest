@@ -20,6 +20,12 @@ export class EmployeeFeedback extends Model<EmployeeFeedback> {
     type: DataType.STRING,
     allowNull: false,
   })
+  declare empCode: string;
+
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+  })
   declare department: string;
 
   @Column({
@@ -33,6 +39,12 @@ export class EmployeeFeedback extends Model<EmployeeFeedback> {
     allowNull: true,
   })
   declare remarks: string;
+
+@Column({
+  type: DataType.STRING,
+  allowNull: true,
+})
+declare adminComment: string | null;
 
   @Column({
     type: DataType.DATE,

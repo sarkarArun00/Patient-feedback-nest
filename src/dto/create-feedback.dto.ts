@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsIn, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class CreateFeedbackDto {
   @IsNotEmpty()
@@ -36,4 +36,19 @@ export class CreateFeedbackDto {
   @IsOptional()
   @IsString()
   overallExperience?: string;
+}
+
+
+export class UpdateFeedbackCommentDto {
+  @IsNotEmpty()
+  @IsNumber()
+  id: number;
+
+  @IsNotEmpty()
+  @IsIn(['patient', 'client', 'employee'])
+  feedbackType: string;
+
+  @IsOptional()
+  @IsString()
+  adminComment?: string;
 }

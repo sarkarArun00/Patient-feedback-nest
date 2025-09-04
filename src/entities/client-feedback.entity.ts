@@ -51,6 +51,12 @@ export class ClientFeedback extends Model<ClientFeedback> {
   @Column(DataType.STRING)
   coldChainMaintenance: string; // Cold chain maintenance
 
+@Column({
+  type: DataType.STRING,
+  allowNull: true,
+})
+declare adminComment: string | null;
+
   @Column({
     type: DataType.DATE,
     defaultValue: DataType.NOW,

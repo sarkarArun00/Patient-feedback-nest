@@ -24,6 +24,7 @@ import { EmployeeFeedback } from './entities/employee-feedback.entity';
       synchronize: true,
     }),
     ConfigModule.forRoot({ isGlobal: true }),
+    
     FeedbacksModule,
     AuthModule
   ],

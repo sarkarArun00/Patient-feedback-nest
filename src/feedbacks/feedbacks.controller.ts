@@ -1,6 +1,6 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseIntPipe, Post } from '@nestjs/common';
 import { FeedbacksService } from './feedbacks.service';
-import { CreateFeedbackDto } from '../dto/create-feedback.dto';
+import { CreateFeedbackDto, UpdateFeedbackCommentDto } from '../dto/create-feedback.dto';
 import { CreateClientFeedbackDto } from 'src/dto/create-client-feedback.dto';
 import { CreateEmployeeFeedbackDto } from 'src/dto/create-employee-feedback.dto';
 
@@ -100,6 +100,11 @@ export class FeedbacksController {
                 error: error.message,
             };
         }
+    }
+
+    @Post('admin-comment')
+    async addAdminComment(@Body() dto: UpdateFeedbackCommentDto) {
+        return this.feedbackService.addAdminComment(dto);
     }
 }
 
