@@ -9,6 +9,7 @@ import { Sequelize } from 'sequelize-typescript';
 import { User } from './entities/user.entity';
 import { PatientFeedback } from './entities/patient-feedback.entity';
 import { ClientFeedback } from './entities/client-feedback.entity';
+import { EmployeeFeedback } from './entities/employee-feedback.entity';
 
 @Module({
   imports: [
@@ -19,7 +20,7 @@ import { ClientFeedback } from './entities/client-feedback.entity';
       username: 'root',
       password: 'Root_1001',
       database: 'patient_feedbacks',
-      models: [User, PatientFeedback, ClientFeedback],
+      models: [User, PatientFeedback, ClientFeedback, EmployeeFeedback],
       synchronize: true,
     }),
     ConfigModule.forRoot({ isGlobal: true }),

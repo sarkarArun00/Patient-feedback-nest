@@ -5,6 +5,8 @@ import { CreateFeedbackDto } from '../dto/create-feedback.dto';
 import { CreationAttributes } from 'sequelize';
 import { CreateClientFeedbackDto } from 'src/dto/create-client-feedback.dto';
 import { ClientFeedback } from '../entities/client-feedback.entity'
+import { CreateEmployeeFeedbackDto } from 'src/dto/create-employee-feedback.dto';
+import { EmployeeFeedback } from 'src/entities/employee-feedback.entity';
 
 @Injectable()
 export class FeedbacksService {
@@ -15,6 +17,9 @@ export class FeedbacksService {
 
         @InjectModel(ClientFeedback)
     private clientFeedbackModel: typeof ClientFeedback,
+
+        @InjectModel(EmployeeFeedback)
+    private readonly employeeFeedbackRepository: typeof EmployeeFeedback,
   ) {}
 
   async createFeedback(createFeedbackDto: CreateFeedbackDto) {
@@ -98,5 +103,14 @@ export class FeedbacksService {
         error: error.message,
       };
     }
+  }
+
+  
+  async create(createDto: CreateEmployeeFeedbackDto): Promise<EmployeeFeedback> {
+    return this.employeeFeedbackRepository.create(createDto as any);
+  }
+
+  async findAll(): Promise<EmployeeFeedback[]> {
+    return this.employeeFeedbackRepository.findAll();
   }
 }

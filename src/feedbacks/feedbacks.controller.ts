@@ -2,6 +2,7 @@ import { Body, Controller, Get, Post } from '@nestjs/common';
 import { FeedbacksService } from './feedbacks.service';
 import { CreateFeedbackDto } from '../dto/create-feedback.dto';
 import { CreateClientFeedbackDto } from 'src/dto/create-client-feedback.dto';
+import { CreateEmployeeFeedbackDto } from 'src/dto/create-employee-feedback.dto';
 
 
 @Controller('feedbacks')
@@ -21,7 +22,7 @@ export class FeedbacksController {
 
     @Post('client-feedback')
     async createClientFeedback(@Body() createDto: CreateClientFeedbackDto) {
-        return this.feedbackService.createClientFeedback(createDto);
+        // return this.feedbackService.createClientFeedback(createDto);
         try {
             const feedback = await this.feedbackService.createClientFeedback(createDto);
             return {
@@ -42,7 +43,7 @@ export class FeedbacksController {
     // 👉 Get all client feedbacks
     @Get('getAllClientFeedback')
     async findAllClientFeedback() {
-        return this.feedbackService.findAllClientFeedback();
+        // return this.feedbackService.findAllClientFeedback();
         try {
             const feedbacks = await this.feedbackService.findAllClientFeedback();
             return {
@@ -59,7 +60,46 @@ export class FeedbacksController {
                 error: error.message,
             };
         }
-        
+
+    }
+
+    @Post('employee-feedback')
+    async createEmpFeedback(@Body() createDto: CreateEmployeeFeedbackDto) {
+        try {
+            const feedback = await this.feedbackService.create(createDto);
+            return {
+                status: 1,
+                message: 'Employee feedback submitted successfully',
+                success: true,
+            };
+        } catch (error) {
+            return {
+                status: 0,
+                message: 'Failed to submit employee feedback',
+                success: false,
+                error: error.message,
+            };
+        }
+    }
+
+    @Get('geAllEmpFeedback')
+    async getAllEmpFeedback() {
+        try {
+            const feedbacks = await this.feedbackService.findAll();
+            return {
+                status: 1,
+                message: 'Employee feedbacks fetched successfully',
+                success: true,
+                data: feedbacks,
+            };
+        } catch (error) {
+            return {
+                status: 0,
+                message: 'Failed to fetch employee feedbacks',
+                success: false,
+                error: error.message,
+            };
+        }
     }
 }
 
