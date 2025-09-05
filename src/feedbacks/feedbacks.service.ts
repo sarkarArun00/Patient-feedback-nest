@@ -144,7 +144,6 @@ async addAdminComment(dto: UpdateFeedbackCommentDto) {
       status: 1,
       success: true,
       message: 'Admin comment saved successfully',
-      data: feedback,
     };
   }
 
